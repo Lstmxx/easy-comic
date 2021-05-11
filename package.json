@@ -1,13 +1,12 @@
 {
-  "name": "serve",
+  "name": "easy-comic",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "利用express做的漫画服务，通过分析网站接口整理成restful接口，开箱即用。",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env nodemon --watch 'src/' -e ts --exec 'ts-node' -r tsconfig-paths/register ./src/server.ts --files"
   },
-  "author": "",
+  "author": "Lstmxx",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
