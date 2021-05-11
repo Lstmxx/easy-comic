@@ -1,20 +1,18 @@
 import { latestPage, search, chapters, chapterDetail } from '@/apis/dmzj';
 import { findByReg } from '@/utils';
 import { Request, Response } from 'express';
-export const getLatestPage = async (req: Request, res: Response) => {
-  try {
-    const result = await latestPage({ page: Number(req.params.page) });
+export const getLatestPage = (req: Request, res: Response) => {
+  latestPage({ page: Number(req.params.page) }).then((result) => {
     res.json(result);
-  } catch(err) {
+  }).catch((err) => {
     res.json({
       err: err
     });
-  }
+  });
 };
 
-export const getSearch = async (req: Request, res: Response) => {
-  try {
-    const result = await search({ keyword: req.params.keyword });
+export const getSearch = (req: Request, res: Response) => {
+  search({ keyword: req.params.keyword }).then((result) => {
     const findDataReg = /\[\{.*\}\]/g;
     const  r = findByReg(findDataReg, result.data || '');
     let data = {};
@@ -28,14 +26,13 @@ export const getSearch = async (req: Request, res: Response) => {
       data: data,
       code: 200
     });
-  } catch (error) {
-    res.json(error);
-  }
+  }).catch((err) => {
+    res.json(err);
+  });
 };
 
 export const getComicChapters = async (req: Request, res: Response) => {
-  try {
-    const result = await chapters({ comicId: req.params.comicId });
+  chapters({ comicId: req.params.comicId }).then((result) => {
     const findDataReg = /(\[\{.*\}\])/g;
     const r = findByReg(findDataReg, result.data || '');
     let data = {};
@@ -49,15 +46,14 @@ export const getComicChapters = async (req: Request, res: Response) => {
       data: data,
       code: 200
     });
-  } catch (error) {
-    res.json(error);
-  }
+  }).catch((err) => {
+    res.json(err);
+  });
 };
 
 export const getChapterDetails = async (req: Request, res: Response) => {
-  try {
-    const { comicId, chapterId } = req.body;
-    const result = await chapterDetail({ chapterId, comicId });
+  const { comicId, chapterId } = req.body;
+  chapterDetail({ chapterId, comicId }).then((result) => {
     const findDataReg = /mReader\.initData.*/g;
     const r = findByReg(findDataReg, result.data || '')
                 .replace('mReader.initData(', '');
@@ -72,7 +68,7 @@ export const getChapterDetails = async (req: Request, res: Response) => {
       data: data,
       code: 200
     });
-  } catch (error) {
-    res.json(error);
-  }
+  }).catch((err) => {
+    res.json(err);
+  });
 };
