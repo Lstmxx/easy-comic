@@ -1,3 +1,3 @@
-export interface SystemConfig {
+export type SystemConfig = {
   port: number
 }

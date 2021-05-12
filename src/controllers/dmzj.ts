@@ -11,7 +11,7 @@ export const getLatestPage = (req: Request, res: Response) => {
   });
 };
 
-export const getSearch = async (req: Request, res: Response) => {
+export const getSearch = (req: Request, res: Response) => {
   search({ keyword: req.params.keyword }).then((result) => {
     const findDataReg = /\[\{.*\}\]/g;
     const r = findByReg(findDataReg, result.data || '');
@@ -31,7 +31,7 @@ export const getSearch = async (req: Request, res: Response) => {
   });
 };
 
-export const getComicChapters = async (req: Request, res: Response) => {
+export const getComicChapters = (req: Request, res: Response) => {
   chapters({ comicId: req.params.comicId }).then((result) => {
     const findDataReg = /(\[\{.*\}\])/g;
     const r = findByReg(findDataReg, result.data || '');
@@ -51,7 +51,7 @@ export const getComicChapters = async (req: Request, res: Response) => {
   });
 };
 
-export const getChapterDetails = async (req: Request, res: Response) => {
+export const getChapterDetails = (req: Request, res: Response) => {
   const { comicId, chapterId } = req.body;
   chapterDetail({ chapterId, comicId }).then((result) => {
     const findDataReg = /mReader\.initData.*/g;
