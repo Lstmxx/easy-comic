@@ -1,3 +1,3 @@
-export interface LatestParams {
+export type LatestParams = {
   page?: number
 }

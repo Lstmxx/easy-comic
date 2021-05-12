@@ -1,4 +1,4 @@
-export interface ComicItem {
+export type ComicItem = {
   addtime?: unknown
   alading?: number
   alias_name?: string

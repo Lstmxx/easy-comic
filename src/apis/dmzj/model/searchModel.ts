@@ -1,3 +1,3 @@
-export interface SearchParams {
+export type SearchParams = {
   keyword: string
 }
