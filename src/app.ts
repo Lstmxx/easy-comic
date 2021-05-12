@@ -4,6 +4,7 @@ import { NextFunction, Request, Response } from 'express';
 import compression from 'compression';
 
 import * as dmzjController from '@/controllers/dmzj';
+import * as xmhController from '@/controllers/xmh';
 
 import * as dmzjMiddleware from '@/middleware/dmzj';
 const app = express();
@@ -27,6 +28,8 @@ app.get('/dmzj/latest/:page', dmzjMiddleware.validateGet, dmzjController.getLate
 app.get('/dmzj/search/:keyword', dmzjMiddleware.validateGet, dmzjController.getSearch);
 app.get('/dmzj/comic/details/:comicId', dmzjMiddleware.validateGet, dmzjController.getComicChapters);
 app.post('/dmzj/chapters/details', dmzjMiddleware.validateChapterDetailsParams, dmzjController.getChapterDetails);
+
+app.post('/xmh/latest', xmhController.getLatestPage);
 
 app.use(function(err: Error, req: Request, res: Response, next: NextFunction) {
   return res.sendStatus(500);

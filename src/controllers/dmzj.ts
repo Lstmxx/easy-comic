@@ -11,10 +11,10 @@ export const getLatestPage = (req: Request, res: Response) => {
   });
 };
 
-export const getSearch = (req: Request, res: Response) => {
+export const getSearch = async (req: Request, res: Response) => {
   search({ keyword: req.params.keyword }).then((result) => {
     const findDataReg = /\[\{.*\}\]/g;
-    const  r = findByReg(findDataReg, result.data || '');
+    const r = findByReg(findDataReg, result.data || '');
     let data = {};
     try {
       data = JSON.parse(r);

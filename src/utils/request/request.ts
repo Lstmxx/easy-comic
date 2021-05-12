@@ -5,7 +5,7 @@ import { Options, CoreOptions } from 'request';
 export function promiseRequest(options: Options) {
   return new Promise((resolve, reject) => {
     try {
-      request(options, function name(error, response, body) {
+      request(options, function(error, response, body) {
         if (!error && response.statusCode === 200) {
           resolve(body);
         } else {

@@ -19,4 +19,28 @@ function createDmzj() {
   return dmzj;
 }
 
+class Xmh extends Request {
+  parse(body: any) {
+    try {
+      body = JSON.parse(body);
+      return body;
+    } catch (error) {
+      return body;
+    }
+  }
+}
+
+function createXmh() {
+  const op: CoreOptions = {
+    baseUrl: 'http://www.xmanhua.com/',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  };
+  const xmh = new Xmh(op);
+  return xmh;
+}
+
 export const dmzjReq = createDmzj();
+
+export const xmhReq = createXmh();
